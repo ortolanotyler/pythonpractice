@@ -1,7 +1,72 @@
-echo "# pythonpractice" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/ortolanotyler/pythonpractice.git
-git push -u origin main
+"""solution_set_1.py"""
+
+def is_any_7(numbers):
+    """Check if there is a 7 in the list."""
+
+    for num in numbers:
+        if num == 7:
+            return True
+
+    return False
+
+print("Test False:", is_any_7([1, 2, 4, 5]))
+print("Test True:", is_any_7([1, 2, 7, 4, 5]))
+
+"""solution_set_2.py"""
+
+def temperature_converter(unit_in, unit_out, temperature):
+    """Convert between Fahrenheit and Celsius and return the result."""
+
+    if unit_in != "f" and unit_in != "c":
+        return f"Invalid unit {unit_in}"
+
+    if unit_out != "f" and unit_out != "c":
+        return f"Invalid unit {unit_out}"
+
+    if unit_in == "f" and unit_out == "c":
+        temperature = (temperature - 32) / 9 * 5
+
+    if unit_in == "c" and unit_out == "f":
+        temperature = (temperature * 5 / 9) + 32
+
+    return temperature
+
+print("Convert Celsius to Fahrenheit:", temperature_converter("c", "f", 0), "should be 32.0")
+print("Convert Fahrenheit to Celsius:", temperature_converter("f", "c", 212), "should be 100.0")
+print("Convert Invalid Unit:", temperature_converter("z", "f", 32), "should be Invalid unit z")
+
+"""solution_set_3.py"""
+
+def print_numbers_in_range(numbers, lowest, highest):
+    """Print numbers from the list that fall within the specified range"""
+
+    for num in numbers:
+        if lowest <= num <= highest:
+            print(f"{num} fits")
+
+print_numbers_in_range([10, 20, 30, 40, 50], 15, 30)
+
+"""solution_set_4.py"""
+
+def calculate_sum(numbers):
+    """Calculate the sum of a list of numbers. """
+
+    total = 0
+
+    for num in numbers:
+        total += num
+
+    return total
+
+print("Sum of Numbers:", calculate_sum([1, 2, 3, 4]))
+
+"""solution_set_5.py"""
+
+def print_numbers(start, stop):
+    """Print all numbers from start up to and including stop;"""
+
+    while start <= stop:
+        print(start)
+        start += 1
+
+print_numbers(5, 7)
