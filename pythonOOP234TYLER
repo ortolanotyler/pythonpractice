@@ -1,0 +1,75 @@
+ """Python serial number generator."""
+
+class SerialGenerator:
+    """Machine to create unique incrementing serial numbers.
+    
+    >>> serial = SerialGenerator(start=100)
+
+    >>> serial.generate()
+    100
+
+    >>> serial.generate()
+    101
+
+    >>> serial.generate()
+    102
+
+    >>> serial.reset()
+
+    >>> serial.generate()
+    100
+    """
+
+    def __init__(self, start=0):
+        """Make a new generator, starting at start."""
+
+        self.start = self.next = start
+
+    def __repr__(self):
+        """Show representation."""
+
+        return f"<SerialGenerator start={self.start} next={self.next}>"
+
+    def generate(self):
+        """Return next serial."""
+
+        self.next += 1
+        return self.next - 1
+
+    def reset(self):
+        """Reset number to original start."""
+
+        self.next = self.start
+
+
+
+
+#2 QUESTION #2 ON 23.4 
+
+import random
+
+class RandomWordFinder:
+    """A tool for finding random words in a dictionary file."""
+
+    def __init__(self, file_path):
+        """Initialize the word finder with a dictionary file."""
+        with open(file_path, 'r') as file:
+            self.words = [line.strip() for line in file]
+        print(f"Loaded {len(self.words)} words from the dictionary.")
+
+    def get_random_word(self):
+        """Get a random word from the loaded dictionary."""
+        return random.choice(self.words)
+
+
+class FilteredWordFinder(RandomWordFinder):
+    """A specialized word finder that excludes empty lines and comments."""
+
+    def __init__(self, file_path):
+        """Initialize the filtered word finder with a dictionary file."""
+        super().__init__(file_path)
+
+    def get_random_word(self):
+        """Get a random word from the loaded dictionary, excluding empty lines and comments."""
+        valid_words = [word for word in self.words if word and not word.startswith("#")]
+        return random.choice(valid_words)
